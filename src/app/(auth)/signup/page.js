@@ -24,29 +24,38 @@ export default function Signup() {
   const [loading, setLoading] = useState(false)
 
   async function handleSignUp() {
-   
-    setLoading(true)
+    setLoading(true);
 
-    const { data, error } = await supabase.auth.signup({
+    console.log('Email:', email);
+    console.log('Password:', password);
+
+    const { data, error } = await supabase.auth.signUp({
       email: email,
-      password: password
-    })
-    
-    if(error) {
-      Alert.alert('Error', error.message)
-      return
+      password: password,
+    });
+
+    if (error) {
+      Alert.alert('Erro ao cadastrar', error.message);
+      setLoading(false);
+      return;
     }
 
-    setLoading(false)
-    router.replace('/')
-    
+    console.log('Usuário cadastrado:', data);
+
+    Alert.alert(
+      'Verifique seu e-mail',
+      'Enviamos um link de confirmação para seu e-mail.'
+    );
+
+    setLoading(false);
+    router.replace('/');
   }
 
   return (
 
     <SafeAreaView style={{ flex: 1 }}>
       <ScrollView style={{ flex: 1, backgroundColor: colors.white }}>
-        
+
         <View style={styles.container}>
           <View style={styles.header}>
 
