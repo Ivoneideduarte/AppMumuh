@@ -7,13 +7,17 @@ import {
   Pressable,
   SafeAreaView,
   ScrollView,
-  Alert
+  Alert,
+  Button,
+  TouchableOpacity,
+  Platform
 } from 'react-native';
 import { useState } from 'react';
 import { colors } from "@/constants/colors";
 import { Link } from 'expo-router';
 import { router } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
+import DateTimePicker from '@react-native-community/datetimepicker';
 import { supabase } from '../../../lib/supabase'
 
 export default function Signup() {
@@ -21,7 +25,24 @@ export default function Signup() {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [birthday, setBirthday] = useState(new Date()); // valor padrão é hoje
+  const [showDatePicker, setShowDatePicker] = useState(false);
   const [loading, setLoading] = useState(false)
+
+  const onChangeDate = (event, selectedDate) => {
+    const currentDate = selectedDate || birthday;
+    setShowDatePicker(false);
+    setBirthday(currentDate);
+  };
+
+  // Função para formatar a data no padrão YYYY-MM-DD
+
+  const formatDate = (date) => {
+    const yyyy = date.getFullYear();
+    const mm = String(date.getMonth() + 1).padStart(2, '0');
+    const dd = String(date.getDate()).padStart(2, '0');
+    return `${dd}/${mm}/${yyyy}`;
+  };
 
   async function handleSignUp() {
     setLoading(true);
@@ -29,9 +50,17 @@ export default function Signup() {
     console.log('Email:', email);
     console.log('Password:', password);
 
+    const birthdayString = formatDate(birthday);
+
     const { data, error } = await supabase.auth.signUp({
       email: email,
       password: password,
+      options: {
+        data: {
+          name: name,
+          birthday: birthdayString
+        }
+      }
     });
 
     if (error) {
@@ -85,11 +114,23 @@ export default function Signup() {
             </View>
 
             <View>
-              <Text style={styles.label}>Seu aniversário</Text>
-              <TextInput
-                placeholder='Selecione data...'
-                style={styles.input}
-              />
+              <Text style={styles.label}>Data de nascimento:</Text>
+              
+              <TouchableOpacity
+                style={styles.dateButton}
+                onPress={() => setShowDatePicker(true)}
+              >
+                <Text style={styles.dateButtonText}>{formatDate(birthday)}</Text>
+              </TouchableOpacity>
+
+              {showDatePicker && (
+                <DateTimePicker
+                  value={birthday}
+                  mode="date"
+                  display={Platform.OS === 'ios' ? 'spinner' : 'default'}
+                  onChange={onChangeDate}
+                />
+              )}
             </View>
 
             <View>
@@ -197,5 +238,20 @@ const styles = StyleSheet.create({
     padding: 8,
     borderRadius: 8,
     marginBottom: 8
-  }
+  },
+  dateButton: {
+    backgroundColor: '#f1f1f1',
+    padding: 12,
+    borderRadius: 6,
+    alignItems: 'center',
+    marginBottom: 8
+  },
+  dateButtonText: {
+    color: 'rgba(0,0,0,0.6)',
+    fontSize: 16,
+    
+  },
+  
+  
+  
 })
