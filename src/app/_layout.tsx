@@ -15,6 +15,11 @@ export default function RootLayout() {
       />
 
       <Stack.Screen
+        name="(panel)/home/page"
+        options={{ headerShown: false }}
+      />
+
+      <Stack.Screen
         name="(panel)/profile/page"
         options={{ headerShown: false }}
       />

@@ -1,7 +1,15 @@
-import { View, Text, StyleSheet, TextInput, Pressable } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TextInput,
+  TouchableOpacity,
+  Alert
+} from 'react-native';
 import { useState } from "react";
 import { colors } from "@/constants/colors";
-import { Link } from 'expo-router';
+import { Link, router } from 'expo-router';
+import { supabase } from '../lib/supabase';
 
 export default function Login() {
 
@@ -10,12 +18,28 @@ export default function Login() {
   const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
 
-  function handleSignIn() {
+  async function handleSignIn() {
     console.log({
       name,
       email,
       password
     })
+
+    setLoading(true)
+
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email: email,
+      password: password
+    })
+
+    if (error) {
+      Alert.alert('Erro ao fazer login', error.message);
+      setLoading(false);
+      return;
+    }
+
+    setLoading(false)
+    router.replace('/(panel)/home/page')
   }
 
   return (
@@ -53,9 +77,11 @@ export default function Login() {
           />
         </View>
 
-        <Pressable style={styles.button} onPress={handleSignIn} >
-          <Text style={styles.buttonText}>Acessar</Text>
-        </Pressable>
+        <TouchableOpacity style={styles.button} onPress={handleSignIn} >
+          <Text style={styles.buttonText}>
+            {loading ? 'Carregando...' : 'Acessar'}
+          </Text>
+        </TouchableOpacity>
 
         <Link href='/(auth)/signup/page' style={styles.link}>
           <Text>Ainda não possui uma conta? Cadastre-se</Text>

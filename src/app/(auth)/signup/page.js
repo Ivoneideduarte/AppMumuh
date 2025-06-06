@@ -115,7 +115,7 @@ export default function Signup() {
 
             <View>
               <Text style={styles.label}>Data de nascimento:</Text>
-              
+
               <TouchableOpacity
                 style={styles.dateButton}
                 onPress={() => setShowDatePicker(true)}
@@ -154,9 +154,11 @@ export default function Signup() {
               />
             </View>
 
-            <Pressable style={styles.button} onPress={handleSignUp} >
-              <Text style={styles.buttonText}>Cadastrar</Text>
-            </Pressable>
+            <TouchableOpacity style={styles.button} onPress={handleSignUp} >
+              <Text style={styles.buttonText}>
+                {loading ? 'Carregando...' : 'Cadastrar'}
+              </Text>
+            </TouchableOpacity>
 
             <Link href='/' style={styles.link}>
               <Text>Já possui uma conta? Faça login</Text>
@@ -249,9 +251,9 @@ const styles = StyleSheet.create({
   dateButtonText: {
     color: 'rgba(0,0,0,0.6)',
     fontSize: 16,
-    
+
   },
-  
-  
-  
+
+
+
 })
