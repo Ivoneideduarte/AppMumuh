@@ -1,5 +1,6 @@
 import { colors } from '@/constants/colors';
 import { Feather } from '@expo/vector-icons';
+import { router } from 'expo-router';
 import { SafeAreaView, StyleSheet, Text, TouchableOpacity } from 'react-native';
 
 interface HeaderProps{
@@ -13,7 +14,7 @@ export default function Header({user} : HeaderProps) {
             <Text style={styles.user}>Olá, {user}</Text>
 
             <TouchableOpacity>
-                <Feather name="user" size={30} color='#0D1321' />
+                <Feather name="user" size={30} color='#0D1321' onPress={() => router.replace('/(panel)/profile/page')} />
             </TouchableOpacity>
 
         </SafeAreaView>

@@ -88,7 +88,7 @@ export default function Signup() {
         <View style={styles.container}>
           <View style={styles.header}>
 
-            <Pressable style={styles.backButton} onPress={() => router.back()} >
+            <Pressable style={styles.backButton} onPress={() => router.replace('/(auth)/signin/page')} >
               <Ionicons name='arrow-back' size={24} color={colors.white} />
             </Pressable>
 
@@ -160,7 +160,7 @@ export default function Signup() {
               </Text>
             </TouchableOpacity>
 
-            <Link href='/' style={styles.link}>
+            <Link href='/(auth)/signin/page' style={styles.link}>
               <Text>Já possui uma conta? Faça login</Text>
             </Link>
 
@@ -209,7 +209,7 @@ const styles = StyleSheet.create({
   },
   input: {
     borderWidth: 1,
-    borderColor: colors.gray,
+    borderColor: colors.blue,
     borderRadius: 8,
     marginBottom: 16,
     paddingHorizontal: 8,
