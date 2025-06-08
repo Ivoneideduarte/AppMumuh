@@ -16,35 +16,7 @@ export default function Calender(props: { data: { week: string | number | bigint
 }
 
 const styles = StyleSheet.create({
-    cardDate: {
-        flexDirection: 'row',
-
-    },
-    date: {
-        height: 100,
-        width: 80,
-        borderRadius: 8,
-        marginVertical: 24,
-        marginHorizontal: 6,
-        borderWidth: 1,
-        borderColor: 'rgba(0,0,0, 0.2)',
-        backgroundColor: colors.background,
-        justifyContent: 'center',
-        alignItems: 'center',
-
-    },
-    week: {
-        color: '#0D1321',
-        fontSize: 18,
-        textAlign: 'center',
-
-    },
-    day: {
-        color: 'rgba(0,0,0, 0.6)',
-        fontSize: 18,
-        fontWeight: 'bold',
-        textAlign: 'center'
-    },
+  
     buttonDate: {
         flex: 1,
         borderWidth: 1,
@@ -59,14 +31,14 @@ const styles = StyleSheet.create({
     },
 
     textMonth: {
-        color: '#0D1321',
+        color: colors.gray,
         fontSize: 18,
     },
 
     textDay: {
-        color: '#0D1321',
+        color: colors.gray,
         fontSize: 18,
-        fontWeight: 'bold'
+        fontWeight: '500'
     },
 
 })

@@ -1,6 +1,7 @@
 import { colors } from '@/constants/colors';
 import { Feather } from '@expo/vector-icons';
 import { Image, StyleSheet, Text, View } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 
 interface HeaderProps {
     name: String;
@@ -13,7 +14,8 @@ export default function User({ name, img, icon }: HeaderProps) {
         <View style={styles.container}>
             <Image style={styles.img} src={'#'} /> {img}
             <Text style={styles.user}>{name}</Text>
-            <Feather style={styles.icon} name="trash-2" color="#ff0000" size={20} />
+            <Ionicons style={styles.icon} name="trash-outline" size={24} color={colors.red} />
+      
         </View>
     );
 }
@@ -25,7 +27,7 @@ const styles = StyleSheet.create({
         maxHeight: 70,
         marginHorizontal: 20,
         marginVertical: 10,
-        justifyContent: 'space-evenly',
+        justifyContent: 'space-between',
         flexDirection: 'row',
         alignItems: 'center'
     },
@@ -44,7 +46,7 @@ const styles = StyleSheet.create({
     user: {
         fontSize: 20,
         fontWeight: 'semibold',
-        color: '#0D1321',
+        color: colors.gray,
         paddingLeft: 15
     }
 })

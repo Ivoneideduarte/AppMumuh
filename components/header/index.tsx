@@ -1,7 +1,7 @@
 import { colors } from '@/constants/colors';
-import { Feather } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import { SafeAreaView, StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 
 interface HeaderProps{
     user: String;
@@ -14,7 +14,7 @@ export default function Header({user} : HeaderProps) {
             <Text style={styles.user}>Olá, {user}</Text>
 
             <TouchableOpacity>
-                <Feather name="user" size={30} color='#0D1321' onPress={() => router.replace('/(panel)/profile/page')} />
+                <Ionicons name="person-outline" size={30} color={colors.gray} onPress={() => router.replace('/(panel)/profile/page')}/>
             </TouchableOpacity>
 
         </SafeAreaView>
@@ -37,6 +37,6 @@ const styles = StyleSheet.create({
     user: {
         fontSize: 20,
         fontWeight: 'semibold',
-        color: '#0D1321'
+        color: colors.gray
     }
 })
