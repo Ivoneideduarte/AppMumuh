@@ -24,6 +24,7 @@ export default function Signup() {
 
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
+  const [telefone, setTelefone] = useState('')
   const [password, setPassword] = useState('')
   const [birthday, setBirthday] = useState(new Date()); // valor padrão é hoje
   const [showDatePicker, setShowDatePicker] = useState(false);
@@ -58,7 +59,8 @@ export default function Signup() {
       options: {
         data: {
           name: name,
-          birthday: birthdayString
+          birthday: birthdayString,
+          telefone: telefone,
         }
       }
     });
@@ -140,6 +142,16 @@ export default function Signup() {
                 style={styles.input}
                 value={email}
                 onChangeText={setEmail}
+              />
+            </View>
+
+            <View>
+              <Text style={styles.label}>Telefone</Text>
+              <TextInput
+                placeholder='(xx) x xxxx-xxxx'
+                style={styles.input}
+                value={telefone}
+                onChangeText={setTelefone}
               />
             </View>
 

@@ -12,7 +12,9 @@ interface HeaderProps {
 export default function User({ name, img, icon }: HeaderProps) {
     return (
         <View style={styles.container}>
-            <Image style={styles.img} src={'#'} /> {img}
+            <Text style={styles.img}>
+                <Image  source={{  }} /> {img}
+            </Text>
             <Text style={styles.user}>{name}</Text>
             <Ionicons style={styles.icon} name="trash-outline" size={24} color={colors.red} />
       

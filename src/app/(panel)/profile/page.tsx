@@ -16,7 +16,7 @@ import * as ImagePicker from 'expo-image-picker';
 import { useState } from 'react';
 
 export default function Profile() {
-  const { setAuth, user } = useAuth();
+  const { setAuth, user, userData  } = useAuth();
   const [imageUri, setImageUri] = useState<string | null>(null);
 
   async function handleSignout() {
@@ -78,7 +78,7 @@ export default function Profile() {
           <Ionicons name="person-outline" size={25} color={colors.gray} style={styles.iconLeft} />
           <View style={styles.textWrapper}>
             <Text style={styles.label}>Nome completo</Text>
-            <Text style={styles.value}>Ivoneide Duarte</Text>
+            <Text style={styles.value}>{userData?.name}</Text>
           </View>
           <Ionicons name="chevron-forward-outline" size={25} color={colors.gray} style={styles.iconRight} />
         </TouchableOpacity>
@@ -87,7 +87,7 @@ export default function Profile() {
           <Ionicons name="mail-outline" size={25} color={colors.gray} style={styles.iconLeft} />
           <View style={styles.textWrapper}>
             <Text style={styles.label}>Email</Text>
-            <Text style={styles.value}>ivoneide@gmail.com</Text>
+            <Text style={styles.value}>{user?.email}</Text>
           </View>
           <Ionicons name="chevron-forward-outline" size={25} color={colors.gray} style={styles.iconRight} />
     
@@ -98,7 +98,7 @@ export default function Profile() {
           
           <View style={styles.textWrapper}>
             <Text style={styles.label}>Data de nascimento</Text>
-            <Text style={styles.value}>28/04/1997</Text>
+            <Text style={styles.value}>{userData?.birthday}</Text>
           </View>
           <Ionicons name="chevron-forward-outline" size={25} color={colors.gray} style={styles.iconRight} />
         </TouchableOpacity>
@@ -108,7 +108,7 @@ export default function Profile() {
 
           <View style={styles.textWrapper}>
             <Text style={styles.label}>Telefone</Text>
-            <Text style={styles.value}>85 98948-6400</Text>
+            <Text style={styles.value}>{userData?.telefone}</Text>
           </View>
           <Ionicons name="chevron-forward-outline" size={25} color={colors.gray} style={styles.iconRight} />
         </TouchableOpacity>

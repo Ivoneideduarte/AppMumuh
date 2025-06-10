@@ -9,8 +9,20 @@ export default function Work(props: { data: { work: string | number | bigint | b
       <View style={styles.label}>
         <Text style={styles.title} >{props.data.work}</Text>
       </View>
-      <User name='Thalita Gonçalves' img={undefined} />
-      <User name='Ivoneide Duarte' img={undefined} />
+
+      <User
+        name="Thalita Gonçalves"
+        img=""
+        icon="trash-outline"
+      />
+
+      <User
+        name="Thalita Gonçalves"
+        img=""
+        icon="trash-outline"
+      />
+
+
     </View>
   )
 }
