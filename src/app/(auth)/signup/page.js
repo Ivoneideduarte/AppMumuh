@@ -52,6 +52,7 @@ export default function Signup() {
     console.log('Password:', password);
 
     const birthdayString = formatDate(birthday);
+    const telefoneString = formatDate(telefone);
 
     const { data, error } = await supabase.auth.signUp({
       email: email,
@@ -60,7 +61,7 @@ export default function Signup() {
         data: {
           name: name,
           birthday: birthdayString,
-          telefone: telefone,
+          telefone: telefoneString,
         }
       }
     });
